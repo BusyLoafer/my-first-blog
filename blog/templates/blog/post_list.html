@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts</title>
-</head>
-<body>
-    <h2>Статьи</h2>
+{% extends 'blog/base.html' %}
+
+{% block content %}
     {% for post in posts %}
-    <div>
-        <p>Опубликовано: {{ post.published_date }}</p>
-        <h1><a href="#">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
+        <div class="post">
+            <p>Опубликовано: {{ post.published_date }}</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
